@@ -1,1 +1,70 @@
-styles.css
+body {
+    background-color: #FF69B4; /* Hot Pink */
+    color: #008080; /* Teal */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #008080; /* Teal */
+    padding: 20px;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav ul li a {
+    color: #FF69B4; /* Hot Pink */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.header-image img {
+    width: 100%;
+    height: auto;
+    border: 5px solid #008080; /* Teal */
+}
+
+main {
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #FF69B4; /* Hot Pink */
+}
+
+footer {
+    background-color: #008080; /* Teal */
+    color: #FFFFFF; /* White */
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+section {
+    margin-bottom: 40px;
+}
+
+button {
+    background-color: #FF69B4; /* Hot Pink */
+    color: #FFFFFF; /* White */
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #FF1493; /* Deeper Pink */
+}
+
