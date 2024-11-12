@@ -10,6 +10,19 @@
             height: 100%;
             overflow-y: auto;
         }
+        h1, h2 {
+            transition: filter 0.3s;
+        }
+        h1:hover, h2:hover {
+            filter: blur(1px) saturate(150%);
+            animation: pixelate 0.5s steps(5, end);
+        }
+        .carousel-slide img {
+            max-width: 750px;
+            max-height: 750px;
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 <body>
@@ -17,7 +30,7 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="game.html">Cozy Cicky Kitties</a></li>
+                <li><a href="game.html">Cozy Clicky Kitties</a></li>
                 <li><a href="mechafinder.html">Mecha Anime Recommendation Tool</a></li>
             </ul>
         </nav>
