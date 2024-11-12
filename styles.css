@@ -22,10 +22,12 @@ nav ul li a {
     color: #FF69B4; /* Hot Pink */
     text-decoration: none;
     font-weight: bold;
+    transition: filter 0.3s;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    filter: blur(1px) saturate(150%);
+    animation: pixelate 0.5s steps(5, end);
 }
 
 .header-image img {
@@ -82,4 +84,3 @@ button {
 button:hover {
     background-color: #FF1493; /* Deeper Pink */
 }
-
