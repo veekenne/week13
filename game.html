@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cozy Clicky Kitties</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #222;
+        }
+        canvas {
+            border: 2px solid #fff;
+        }
+        .choice-button {
+            font-size: 15px;
+            padding: 10px 20px;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.5.0/p5.min.js"></script>
+    <script>
+        let bgImage;
+        let cats = [];
+        let isHovering = false;
+        let clickedCatIndex = -1;
+        let choices = ["Feed", "Pet", "Play"];
+        let choiceButtons = [];
+        let score = 0;
+        let responseMessage = "";
+        let messageTimer = 0;
+        let gameEnded = false;
+
+        function preload() {
+            bgImage = loadImage('bg3.webp'); // Load the uploaded background image
+        }
+
+        function setup() {
+            createCanvas(500, 500).parent(document.body);
+            
+            // Define bounding boxes, names, descriptions, and interaction states for each cat
+            cats = [
+                { x: 255, y: 381, w: 50, h: 50, name: "Mittens", description: "Mittens loves cuddles and sunbathing.", interactions: { feed: false, pet: false, play: false } },
+                { x: 358, y: 311, w: 50, h: 50, name: "Whiskers", description: "Whiskers enjoys biting feet.", interactions: { feed: false, pet: false, play: false } },
+                { x: 131, y: 346, w: 50, h: 50, name: "Dr. Fancy Bees", description: "Dr. Fancy Bees enjoys committing tax fraud.", interactions: { feed: false, pet: false, play: false } },
+                { x: 112, y: 157, w: 50, h: 50, name: "Gadget", description: "Gadget is an escape artist who likes strangers.", interactions: { feed: false, pet: false, play: false } },
+            ];
+        }
+
+        function draw() {
+            if (gameEnded) {
+                drawEndingScreen();
+                return;
+            }
+
+            background(30, 30, 30);
+            
+            // Draw the background image
+            image(bgImage, 0, 0, width, height);
+            
+            isHovering = false; // Reset hover flag
+            
+            // Draw interaction zones for each cat
+            for (let i = 0; i < cats.length; i++) {
+                let cat = cats[i];
+                if (mouseX > cat.x && mouseX < cat.x + cat.w && mouseY > cat.y && mouseY < cat.y + cat.h) {
+                    // Highlight the cat area on mouseover
+                    fill(200, 0, 255, 100);
+                    rect(cat.x, cat.y, cat.w, cat.h);
+
+                    // Set hover flag to true
+                    isHovering = true;
+                }
+            }
+
+            // Change cursor based on whether mouse is hovering over an interactive area
+            if (isHovering) {
+                cursor('pointer');
+            } else {
+                cursor('default');
+            }
+
+            // Display the player's score at the top center
+            fill(255);
+            textSize(18);
+            textAlign(CENTER, TOP);
+            text(`Score: ${score}`, width / 2, 10);
+
+            // Display the response message or cat description at the top center
+            if (messageTimer > 0) {
+                fill(200, 0, 255);
+                textSize(16);
+                text(responseMessage, width / 2, 40);
+                messageTimer--;
+            }
+
+            // Display mouse coordinates in the bottom-left corner
+            displayMouseCoordinates(mouseX, mouseY);
+
+            // Check if the game has ended
+            if (checkAllInteractionsComplete()) {
+                gameEnded = true;
+            }
+        }
+
+        function mousePressed() {
+            // Clear any existing choice buttons
+            clearChoiceButtons();
+
+            // Check if the mouse is pressed over any cat zone
+            for (let i = 0; i < cats.length; i++) {
+                let cat = cats[i];
+                if (mouseX > cat.x && mouseX < cat.x + cat.w && mouseY > cat.y && mouseY < cat.y + cat.h) {
+                    // Store the index of the clicked cat
+                    clickedCatIndex = i;
+
+                    // Display the cat's description
+                    responseMessage = `${cat.name}: ${cat.description}`;
+                    messageTimer = 120;
+
+                    // Create choice buttons near the clicked cat
+                    let buttonX = cat.x + cat.w + 10;
+                    let buttonY = cat.y;
+                    for (let j = 0; j < choices.length; j++) {
+                        let btn = createButton(choices[j]);
+                        btn.position(buttonX, buttonY + j * 30);
+                        btn.mousePressed(() => handleChoice(choices[j], i));
+                        choiceButtons.push(btn);
+                    }
+                }
+            }
+        }
+
+        function clearChoiceButtons() {
+            // Remove any existing choice buttons
+            for (let i = 0; i < choiceButtons.length; i++) {
+                choiceButtons[i].remove();
+            }
+            choiceButtons = [];
+        }
+
+        function handleChoice(choice, catIndex) {
+            // Handle the choice made for a particular cat
+            let points = 0;
+            if (choice === "Feed") {
+                if (!cats[catIndex].interactions.feed) {
+                    points = 10;
+                    cats[catIndex].interactions.feed = true;
+                    responseMessage = `You fed ${cats[catIndex].name}! (+10 points)`;
+                }
+            } else if (choice === "Pet") {
+                if (!cats[catIndex].interactions.pet) {
+                    points = 5;
+                    cats[catIndex].interactions.pet = true;
+                    responseMessage = `You petted ${cats[catIndex].name}! (+5 points)`;
+                }
+            } else if (choice === "Play") {
+                if (!cats[catIndex].interactions.play) {
+                    points = 15;
+                    cats[catIndex].interactions.play = true;
+                    responseMessage = `You played with ${cats[catIndex].name}! (+15 points)`;
+                }
+            }
+
+            // Update the score
+            score += points;
+
+            // Set message timer to display the response for 2 seconds
+            messageTimer = 120;
+
+            // Clear the choice buttons
+            clearChoiceButtons();
+        }
+
+        function checkAllInteractionsComplete() {
+            // Check if all cats have been fed, petted, and played with
+            for (let i = 0; i < cats.length; i++) {
+                let interactions = cats[i].interactions;
+                if (!interactions.feed || !interactions.pet || !interactions.play) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        function drawEndingScreen() {
+            background(30, 30, 30);
+            fill(255);
+            textSize(18);
+            textAlign(CENTER, CENTER);
+            text("Congratulations! You took care of all the cats!", width / 2, height / 2 - 30);
+            textSize(20);
+            text("Unfortunately, you're now an accomplice to tax fraud.", width / 2, height / 2 + 10);
+            text(`Final Score: ${score}`, width / 2, height / 2 + 50);
+        }
+
+        function displayMouseCoordinates(x, y) {
+            fill(255);
+            textSize(20);
+            textAlign(LEFT, BOTTOM);
+            text(`Mouse - X: ${Math.floor(x)}, Y: ${Math.floor(y)}`, 10, height - 20);
+        }
+    </script>
+</body>
+</html>

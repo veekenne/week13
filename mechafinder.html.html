@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mecha Anime Finder</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #2c2c54;
+            color: #f5f5f5;
+            padding: 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+        .anime-container {
+            background-color: #3c3c6e;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(0, 255, 170, 0.5);
+        }
+        h1, h2 {
+            color: #ffdc34;
+            text-shadow: 2px 2px #000;
+        }
+        button {
+            background-color: #ff6f61;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px #cc564d;
+        }
+        button:hover {
+            background-color: #ff856f;
+        }
+        button:active {
+            box-shadow: 0 2px #cc564d;
+            transform: translateY(2px);
+        }
+        .rating label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mecha Anime Finder</h1>
+    <div id="anime-list"></div>
+    <div id="preferences"></div>
+    <button onclick="displayTopGenres(); displayRecommendations();">Submit Ratings</button>
+    <button onclick="rateMoreAnime()">Rate 10 More Mecha Anime</button>
+    <div id="top-genres"></div>
+    <div id="recommendations"></div>
+
+    <script>
+        const animeList = [
+            {"title": "Mobile Suit Gundam", "creator": "Yoshiyuki Tomino", "year": 1979, "genre": "Military science fiction"},
+            {"title": "Neon Genesis Evangelion", "creator": "Hideaki Anno", "year": 1995, "genre": "Apocalyptic and post-apocalyptic fiction"},
+            {"title": "Code Geass: Lelouch of the Rebellion", "creator": "Gorō Taniguchi", "year": 2006, "genre": "Military science fiction"},
+            {"title": "Tengen Toppa Gurren Lagann", "creator": "Hiroyuki Imaishi", "year": 2007, "genre": "Apocalyptic and post-apocalyptic fiction"},
+            {"title": "Macross", "creator": "Shōji Kawamori", "year": 1982, "genre": "Space opera"},
+            {"title": "Full Metal Panic!", "creator": "Shouji Gatou", "year": 2002, "genre": "Military science fiction"},
+            {"title": "Armored Trooper Votoms", "creator": "Ryosuke Takahashi", "year": 1983, "genre": "Military science fiction"},
+            {"title": "Eureka Seven", "creator": "Tomoki Kyoda", "year": 2005, "genre": "Space opera"},
+            {"title": "Martian Successor Nadesico", "creator": "Tatsuo Sato", "year": 1996, "genre": "Space opera"},
+            {"title": "Aldnoah.Zero", "creator": "Gen Urobuchi", "year": 2014, "genre": "Military science fiction"}
+            // Additional entries can be added here
+        ];
+
+        function getRandomAnime(animeArray, count) {
+            const availableAnime = animeArray.filter(anime => !ratedAnimeTitles.has(anime.title));
+            const shuffled = availableAnime.sort(() => 0.5 - Math.random());
+            return shuffled.slice(0, count);
+        }
+
+        function displayAnimeList() {
+            const randomAnimeList = getRandomAnime(animeList, 10);
+            const animeContainer = document.getElementById('anime-list');
+            animeContainer.innerHTML = '';
+
+            randomAnimeList.forEach(anime => {
+                ratedAnimeTitles.add(anime.title);
+                const animeDiv = document.createElement('div');
+                animeDiv.classList.add('anime-container');
+
+                animeDiv.innerHTML = `
+                    <h2>${anime.title} (${anime.year})</h2>
+                    <p><strong>Creator:</strong> ${anime.creator}</p>
+                    <p><strong>Genre:</strong> ${anime.genre}</p>
+                    <div class="rating">
+                        <label><input type="radio" name="${anime.title}-rating" value="1" onclick="handleRating('${anime.genre}', 1)"> 1</label>
+                        <label><input type="radio" name="${anime.title}-rating" value="2" onclick="handleRating('${anime.genre}', 2)"> 2</label>
+                        <label><input type="radio" name="${anime.title}-rating" value="3" onclick="handleRating('${anime.genre}', 3)"> 3</label>
+                        <label><input type="radio" name="${anime.title}-rating" value="4" onclick="handleRating('${anime.genre}', 4)"> 4</label>
+                        <label><input type="radio" name="${anime.title}-rating" value="5" onclick="handleRating('${anime.genre}', 5)"> 5</label>
+                        <label><input type="radio" name="${anime.title}-rating" value="haven't seen"> Haven't seen it</label>
+                    </div>
+                `;
+
+                animeContainer.appendChild(animeDiv);
+            });
+        }
+
+        const genrePreferences = {};
+        const ratedAnimeTitles = new Set();
+
+        function handleRating(genre, rating) {
+            if (rating >= 3) {
+                if (genrePreferences[genre]) {
+                    genrePreferences[genre] += 1;
+                } else {
+                    genrePreferences[genre] = 1;
+                }
+            }
+            displayPreferences();
+        }
+
+        function displayPreferences() {
+            const preferencesContainer = document.getElementById('preferences');
+            preferencesContainer.innerHTML = '<h2>Your Genre Preferences</h2>';
+
+            for (const genre in genrePreferences) {
+                preferencesContainer.innerHTML += `<p>${genre}: ${genrePreferences[genre]} votes</p>`;
+            }
+        }
+
+        function displayTopGenres() {
+            const sortedGenres = Object.entries(genrePreferences).sort((a, b) => b[1] - a[1]).slice(0, 3);
+            const topGenresContainer = document.getElementById('top-genres');
+            topGenresContainer.innerHTML = '<h2>Top 3 Genres Based on Your Ratings</h2>';
+
+            sortedGenres.forEach(([genre, count]) => {
+                topGenresContainer.innerHTML += `<p>${genre}: ${count} votes</p>`;
+            });
+        }
+
+        function displayRecommendations() {
+            const sortedGenres = Object.entries(genrePreferences).sort((a, b) => b[1] - a[1]).slice(0, 3);
+            const recommendationsContainer = document.getElementById('recommendations');
+            recommendationsContainer.innerHTML = '<h2>Recommended Mecha Anime for You</h2>';
+            const recommendedAnime = [];
+
+            sortedGenres.forEach(([genre]) => {
+                const availableAnime = animeList.filter(anime => anime.genre === genre && !ratedAnimeTitles.has(anime.title));
+                if (availableAnime.length > 0) {
+                    recommendedAnime.push(availableAnime[0]);
+                }
+            });
+
+            recommendedAnime.forEach(anime => {
+                recommendationsContainer.innerHTML += `<p>${anime.title} (${anime.year}) - Genre: ${anime.genre}</p>`;
+            });
+        }
+
+        function rateMoreAnime() {
+            displayAnimeList();
+        }
+
+        displayAnimeList();
+    </script>
+</body>
+</html>
