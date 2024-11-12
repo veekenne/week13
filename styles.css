@@ -40,6 +40,21 @@ main {
 
 h1, h2 {
     color: #FF69B4; /* Hot Pink */
+    transition: filter 0.3s;
+}
+
+h1:hover, h2:hover {
+    filter: blur(1px) saturate(150%);
+    animation: pixelate 0.5s steps(5, end);
+}
+
+@keyframes pixelate {
+    0% {
+        filter: blur(0px);
+    }
+    100% {
+        filter: blur(3px);
+    }
 }
 
 footer {
