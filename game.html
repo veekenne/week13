@@ -9,7 +9,7 @@
         body {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             height: 100vh;
             margin: 0;
@@ -20,10 +20,10 @@
         }
         .game-description {
             color: white;
-            margin-top: 20px;
-            font-size: 16px;
+            margin-top: 10px;
+            font-size: 14px;
             text-align: center;
-            max-width: 600px;
+            max-width: 90%;
             font-family: 'Patrick Hand', cursive;
         }
     </style>
@@ -47,14 +47,14 @@
         }
 
         function setup() {
-            createCanvas(500, 500).parent(document.body);
+            createCanvas(400, 400).parent(document.body); // Reduced canvas size to better fit most screens
             
             // Define bounding boxes, names, descriptions, and interaction states for each cat
             cats = [
-                { x: 255, y: 381, w: 50, h: 50, name: "Mittens", description: "Mittens loves cuddles and sunbathing.", interactions: { feed: false, pet: false, play: false } },
-                { x: 358, y: 311, w: 50, h: 50, name: "Whiskers", description: "Whiskers enjoys biting feet.", interactions: { feed: false, pet: false, play: false } },
-                { x: 131, y: 346, w: 50, h: 50, name: "Dr. Fancy Bees", description: "Dr. Fancy Bees enjoys committing tax fraud.", interactions: { feed: false, pet: false, play: false } },
-                { x: 112, y: 157, w: 50, h: 50, name: "Gadget", description: "Gadget is an escape artist who likes strangers.", interactions: { feed: false, pet: false, play: false } },
+                { x: 205, y: 281, w: 40, h: 40, name: "Mittens", description: "Mittens loves cuddles and sunbathing.", interactions: { feed: false, pet: false, play: false } },
+                { x: 288, y: 231, w: 40, h: 40, name: "Whiskers", description: "Whiskers enjoys biting feet.", interactions: { feed: false, pet: false, play: false } },
+                { x: 105, y: 246, w: 40, h: 40, name: "Dr. Fancy Bees", description: "Dr. Fancy Bees enjoys committing tax fraud.", interactions: { feed: false, pet: false, play: false } },
+                { x: 90, y: 107, w: 40, h: 40, name: "Gadget", description: "Gadget is an escape artist who likes strangers.", interactions: { feed: false, pet: false, play: false } },
             ];
         }
 
@@ -93,15 +93,15 @@
 
             // Display the player's score at the top center
             fill(255);
-            textSize(18);
+            textSize(14);
             textAlign(CENTER, TOP);
-            text(`Score: ${score}`, width / 2, 10);
+            text(`Score: ${score}`, width / 2, 5);
 
             // Display the response message or cat description at the top center
             if (messageTimer > 0) {
                 fill(200, 0, 255);
-                textSize(16);
-                text(responseMessage, width / 2, 40);
+                textSize(14);
+                text(responseMessage, width / 2, 30);
                 messageTimer--;
             }
 
@@ -134,7 +134,7 @@
                     let buttonY = cat.y;
                     for (let j = 0; j < choices.length; j++) {
                         let btn = createButton(choices[j]);
-                        btn.position(buttonX, buttonY + j * 30);
+                        btn.position(buttonX, buttonY + j * 25);
                         btn.mousePressed(() => handleChoice(choices[j], i));
                         choiceButtons.push(btn);
                     }
@@ -197,29 +197,29 @@
         function drawEndingScreen() {
             background(30, 30, 30);
             fill(255);
-            textSize(18);
+            textSize(16);
             textAlign(CENTER, CENTER);
-            text("Congratulations! You took care of all the cats!", width / 2, height / 2 - 30);
-            textSize(20);
+            text("Congratulations! You took care of all the cats!", width / 2, height / 2 - 20);
+            textSize(16);
             text("Unfortunately, you're now an accomplice to tax fraud.", width / 2, height / 2 + 10);
-            text(`Final Score: ${score}`, width / 2, height / 2 + 50);
+            text(`Final Score: ${score}`, width / 2, height / 2 + 40);
         }
 
         function displayMouseCoordinates(x, y) {
             fill(255);
-            textSize(20);
+            textSize(12);
             textAlign(LEFT, BOTTOM);
-            text(`Mouse - X: ${Math.floor(x)}, Y: ${Math.floor(y)}`, 10, height - 20);
+            text(`Mouse - X: ${Math.floor(x)}, Y: ${Math.floor(y)}`, 10, height - 10);
         }
     </script>
 
     <!-- Text description beneath the game window -->
     <div class="game-description">
-        Welcome to Cozy Clicky Kitties! <br> 
-        The base code for this game and the image were created in October 2024 using ChatGPT4o with canvas. More than fifty iterations between the LLM and the human facilitator, Vee Kennedy, were used to dictate the creation. 
-        Cozy Clicky Kitties works by calling p5.js and using clickable interaction fields. Try petting, feeding, and playing with each cat. Have fun!<br><br> 
+        Welcome to Cozy Clicky Kitties! Interact with the cats by clicking on them to feed, pet, or play. 
+        Your goal is to complete all interactions with the kitties to finish the game. Have fun!
     </div>
 
 </body>
 </html>
+
 
