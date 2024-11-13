@@ -3,65 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mecha Anime Recommendation Tool</title>
+    <title>Mecha Anime Rating</title>
     <style>
         body {
-            font-family: 'Courier New', Courier, monospace;
-            background-color: #2c2c54;
-            color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
             padding: 20px;
-            max-width: 1000px;
-            margin: auto;
         }
         .anime-container {
-            background-color: #3c3c6e;
+            background: #fff;
             padding: 15px;
-            margin: 15px 0;
+            margin-bottom: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 15px rgba(0, 255, 170, 0.5);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        h1, h2 {
-            color: #ffdc34;
-            text-shadow: 2px 2px #000;
+        .anime-title {
+            font-weight: bold;
+            font-size: 1.2em;
         }
-        button {
-            background-color: #ff6f61;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            margin: 10px 0;
-            font-size: 1em;
-            cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 4px #cc564d;
-        }
-        button:hover {
-            background-color: #ff856f;
-        }
-        button:active {
-            box-shadow: 0 2px #cc564d;
-            transform: translateY(2px);
-        }
-        .rating label {
-            margin-right: 10px;
+        .rating-options {
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
-    <h1>Mecha Anime Recommendation Tool</h1>
-    <p>The Mecha Anime Recommendation Generator allows you to rank an assortment of mecha anime. The system then uses your rankings to identify your favorites and recommend more for you to enjoy. It was created by Vee Kennedy in October 2024 using GPT4o with Canvas and javascript.  
-        
-        
+    
+    <p>Welcome to the Mecha Anime Rating Generator! This tool allows you to rate some of the most iconic mecha anime. Based on your ratings, we will recommend new shows that align with your preferences. Have fun exploring and discovering new favorites!</p>
     <div id="anime-list"></div>
-    <div id="preferences"></div>
-    <button onclick="displayTopGenres(); displayRecommendations();">Submit Ratings</button>
-    <button onclick="rateMoreAnime()">Rate 10 More Mecha Anime</button>
+    <button onclick="submitRatings()">Submit Ratings</button>
     <div id="top-genres"></div>
     <div id="recommendations"></div>
 
     <script>
-        const animeList = [
-        [
+        const animeJson = [
             { "title": "Mobile Suit Gundam", "sub_genre": "Real Robot", "creator": "Yoshiyuki Tomino", "year": 1979 },
             { "title": "Neon Genesis Evangelion", "sub_genre": "Psychological Mecha", "creator": "Hideaki Anno", "year": 1995 },
             { "title": "The Super Dimension Fortress Macross", "sub_genre": "Real Robot", "creator": "Shoji Kawamori", "year": 1982 },
@@ -71,147 +46,103 @@
             { "title": "Gurren Lagann", "sub_genre": "Super Robot", "creator": "Hiroyuki Imaishi", "year": 2007 },
             { "title": "Patlabor: The Mobile Police", "sub_genre": "Real Robot", "creator": "Mamoru Oshii", "year": 1989 },
             { "title": "Martian Successor Nadesico", "sub_genre": "Space Opera Mecha", "creator": "Tatsuo Sato", "year": 1996 },
-            { "title": "Eureka Seven", "sub_genre": "Adventure Mecha", "creator": "Tomoki Kyoda", "year": 2005 },
-            { "title": "Gunbuster", "sub_genre": "Super Robot", "creator": "Hideaki Anno", "year": 1988 },
-            { "title": "Mobile Fighter G Gundam", "sub_genre": "Super Robot", "creator": "Yasuhiro Imagawa", "year": 1994 },
-            { "title": "Mazinger Z", "sub_genre": "Super Robot", "creator": "Go Nagai", "year": 1972 },
-            { "title": "The Vision of Escaflowne", "sub_genre": "Fantasy Mecha", "creator": "Kazuki Akane", "year": 1996 },
-            { "title": "Getter Robo", "sub_genre": "Super Robot", "creator": "Go Nagai & Ken Ishikawa", "year": 1974 },
-            { "title": "Big O", "sub_genre": "Noir Mecha", "creator": "Kazuyoshi Katayama", "year": 1999 },
-            { "title": "Armored Trooper Votoms", "sub_genre": "Real Robot", "creator": "Ryosuke Takahashi", "year": 1983 },
-            { "title": "Aldnoah.Zero", "sub_genre": "Military Mecha", "creator": "Ei Aoki", "year": 2014 },
-            { "title": "Gundam Wing", "sub_genre": "Military Mecha", "creator": "Masashi Ikeda", "year": 1995 },
-{ "title": "Valvrave the Liberator", "sub_genre": "Space Opera Mecha", "creator": "Kō Matsuo", "year": 2013 },
-{ "title": "Knight’s & Magic", "sub_genre": "Fantasy Mecha", "creator": "Yusuke Yamamoto", "year": 2017 },
-{ "title": "Gaogaigar: King of Braves", "sub_genre": "Super Robot", "creator": "Yoshitomo Yonetani", "year": 1997 },
-{ "title": "RahXephon", "sub_genre": "Psychological Mecha", "creator": "Yutaka Izubuchi", "year": 2002 },
-{ "title": "Macross Frontier", "sub_genre": "Space Opera Mecha", "creator": "Shoji Kawamori", "year": 2008 },
-{ "title": "Mobile Suit Gundam SEED", "sub_genre": "Real Robot", "creator": "Mitsuo Fukuda", "year": 2002 },
-{ "title": "Mobile Suit Gundam 00", "sub_genre": "Real Robot", "creator": "Seiji Mizushima", "year": 2007 },
-{ "title": "Mobile Suit Victory Gundam", "sub_genre": "Real Robot", "creator": "Yoshiyuki Tomino", "year": 1993 },
-{ "title": "Genesis Climber Mospeada", "sub_genre": "Adventure Mecha", "creator": "Katsuhisa Yamada", "year": 1983 },
-{ "title": "Dai-Guard", "sub_genre": "Office Comedy Mecha", "creator": "Seiji Mizushima", "year": 1999 },
-{ "title": "Zoids: Chaotic Century", "sub_genre": "Adventure Mecha", "creator": "Takao Kato", "year": 1999 },
-{ "title": "Blue Comet SPT Layzner", "sub_genre": "Real Robot", "creator": "Ryosuke Takahashi", "year": 1985 },
-{ "title": "Cross Ange: Rondo of Angels and Dragons", "sub_genre": "Fantasy Mecha", "creator": "Yoshiharu Ashino", "year": 2014 },
-{ "title": "Space Runaway Ideon", "sub_genre": "Super Robot", "creator": "Yoshiyuki Tomino", "year": 1980 },
-{ "title": "Star Driver", "sub_genre": "Supernatural Mecha", "creator": "Takuya Igarashi", "year": 2010 },
-{ "title": "Heavy Metal L-Gaim", "sub_genre": "Real Robot", "creator": "Yoshiyuki Tomino", "year": 1984 },
-{ "title": "Godannar", "sub_genre": "Super Robot", "creator": "Yasushi Nagaoka", "year": 2003 },
-{ "title": "Gravion", "sub_genre": "Super Robot", "creator": "Masami Ōbari", "year": 2002 },
-{ "title": "Linebarrels of Iron", "sub_genre": "Supernatural Mecha", "creator": "Masamitsu Hidaka", "year": 2008 },
-{ "title": "Break Blade (Broken Blade)", "sub_genre": "Fantasy Mecha", "creator": "Tetsuro Amino", "year": 2010 },
-{ "title": "SSSS.Gridman", "sub_genre": "Tokusatsu Mecha", "creator": "Akira Amemiya", "year": 2018 },
-{ "title": "Macross Plus", "sub_genre": "Real Robot", "creator": "Shoji Kawamori", "year": 1994 },
-{ "title": "Mobile Police Patlabor 2", "sub_genre": "Real Robot", "creator": "Mamoru Oshii", "year": 1993 },
-{ "title": "Knight Gundam", "sub_genre": "Fantasy Mecha", "creator": "Yoshiyuki Tomino", "year": 1990 },
-{ "title": "Turn A Gundam", "sub_genre": "Real Robot", "creator": "Yoshiyuki Tomino", "year": 1999 },
-{ "title": "Zegapain", "sub_genre": "Virtual Reality Mecha", "creator": "Masami Shimoda", "year": 2006 },
-{ "title": "Aquarion", "sub_genre": "Super Robot", "creator": "Shoji Kawamori", "year": 2005 },
-{ "title": "After War Gundam X", "sub_genre": "Post-Apocalyptic Mecha", "creator": "Sunrise", "year": 1996 },
-{ "title": "Overman King Gainer", "sub_genre": "Real Robot", "creator": "Yoshiyuki Tomino", "year": 2002 },
-{ "title": "Captain Earth", "sub_genre": "Supernatural Mecha", "creator": "Takuya Igarashi", "year": 2014 },
-{ "title": "Gasaraki", "sub_genre": "Military Mecha", "creator": "Ryosuke Takahashi", "year": 1998 },
-{ "title": "Macross 7", "sub_genre": "Space Opera Mecha", "creator": "Tetsuro Amino", "year": 1994 },
-{ "title": "Magic Knight Rayearth", "sub_genre": "Fantasy Mecha", "creator": "Toshihiro Hirano", "year": 1994 },
-{ "title": "Robotech", "sub_genre": "Compilation Mecha", "creator": "Carl Macek", "year": 1985 },
-{ "title": "Dancouga - Super Beast Machine God", "sub_genre": "Super Robot", "creator": "Masami Ōbari", "year": 1985 },
-{ "title": "Armored Fleet Dairugger XV", "sub_genre": "Real Robot", "creator": "Saburo Yatsude", "year": 1982 },
-{ "title": "Aquarion Evol", "sub_genre": "Super Robot", "creator": "Shoji Kawamori", "year": 2012 },
-{ "title": "Fafner in the Azure", "sub_genre": "Psychological Mecha", "creator": "Nobuyoshi Habara", "year": 2004 }
- 
+            { "title": "Eureka Seven", "sub_genre": "Adventure Mecha", "creator": "Tomoki Kyoda", "year": 2005 }
         ];
 
-        function getRandomAnime(animeArray, count) {
-            const availableAnime = animeArray.filter(anime => !ratedAnimeTitles.has(anime.title));
-            const shuffled = availableAnime.sort(() => 0.5 - Math.random());
+        function getRandomAnime(animeList, count) {
+            const shuffled = animeList.sort(() => 0.5 - Math.random());
             return shuffled.slice(0, count);
         }
 
-        function displayAnimeList() {
-            const randomAnimeList = getRandomAnime(animeList, 10);
-            const animeContainer = document.getElementById('anime-list');
-            animeContainer.innerHTML = '';
+        const selectedAnime = getRandomAnime(animeJson, 10);
+        const animeListContainer = document.getElementById('anime-list');
 
-            randomAnimeList.forEach(anime => {
-                ratedAnimeTitles.add(anime.title);
-                const animeDiv = document.createElement('div');
-                animeDiv.classList.add('anime-container');
+        selectedAnime.forEach(anime => {
+            const animeContainer = document.createElement('div');
+            animeContainer.classList.add('anime-container');
 
-                animeDiv.innerHTML = `
-                    <h2>${anime.title} (${anime.year})</h2>
-                    <p><strong>Creator:</strong> ${anime.creator}</p>
-                    <p><strong>Genre:</strong> ${anime.genre}</p>
-                    <div class="rating">
-                        <label><input type="radio" name="${anime.title}-rating" value="1" onclick="handleRating('${anime.genre}', 1)"> 1</label>
-                        <label><input type="radio" name="${anime.title}-rating" value="2" onclick="handleRating('${anime.genre}', 2)"> 2</label>
-                        <label><input type="radio" name="${anime.title}-rating" value="3" onclick="handleRating('${anime.genre}', 3)"> 3</label>
-                        <label><input type="radio" name="${anime.title}-rating" value="4" onclick="handleRating('${anime.genre}', 4)"> 4</label>
-                        <label><input type="radio" name="${anime.title}-rating" value="5" onclick="handleRating('${anime.genre}', 5)"> 5</label>
-                        <label><input type="radio" name="${anime.title}-rating" value="haven't seen"> Haven't seen it</label>
-                    </div>
-                `;
+            const animeTitle = document.createElement('div');
+            animeTitle.classList.add('anime-title');
+            animeTitle.textContent = `${anime.title} (${anime.year}) by ${anime.creator}`;
 
-                animeContainer.appendChild(animeDiv);
-            });
-        }
+            const ratingOptions = document.createElement('div');
+            ratingOptions.classList.add('rating-options');
 
-        const genrePreferences = {};
-        const ratedAnimeTitles = new Set();
+            for (let i = 1; i <= 5; i++) {
+                const label = document.createElement('label');
+                const radio = document.createElement('input');
+                radio.type = 'radio';
+                radio.name = `rating-${anime.title}`;
+                radio.value = i;
+                label.appendChild(radio);
+                label.appendChild(document.createTextNode(` ${i} `));
+                ratingOptions.appendChild(label);
+            }
 
-        function handleRating(genre, rating) {
-            if (rating >= 3) {
-                if (genrePreferences[genre]) {
-                    genrePreferences[genre] += 1;
-                } else {
-                    genrePreferences[genre] = 1;
+            const haventSeenLabel = document.createElement('label');
+            const haventSeenRadio = document.createElement('input');
+            haventSeenRadio.type = 'radio';
+            haventSeenRadio.name = `rating-${anime.title}`;
+            haventSeenRadio.value = 'haven't seen';
+            haventSeenLabel.appendChild(haventSeenRadio);
+            haventSeenLabel.appendChild(document.createTextNode(" Haven't seen it"));
+            ratingOptions.appendChild(haventSeenLabel);
+
+            animeContainer.appendChild(animeTitle);
+            animeContainer.appendChild(ratingOptions);
+            animeListContainer.appendChild(animeContainer);
+        });
+
+        function submitRatings() {
+            const genreRatings = {};
+            const ratedAnimeTitles = [];
+
+            selectedAnime.forEach(anime => {
+                const ratingElements = document.getElementsByName(`rating-${anime.title}`);
+                let rating = null;
+                ratingElements.forEach(element => {
+                    if (element.checked) {
+                        rating = element.value;
+                    }
+                });
+
+                if (rating && rating !== "haven't seen" && parseInt(rating) >= 3) {
+                    ratedAnimeTitles.push(anime.title);
+                    if (genreRatings[anime.sub_genre]) {
+                        genreRatings[anime.sub_genre]++;
+                    } else {
+                        genreRatings[anime.sub_genre] = 1;
+                    }
                 }
-            }
-            displayPreferences();
-        }
+            });
 
-        function displayPreferences() {
-            const preferencesContainer = document.getElementById('preferences');
-            preferencesContainer.innerHTML = '<h2>Your Genre Preferences</h2>';
-
-            for (const genre in genrePreferences) {
-                preferencesContainer.innerHTML += `<p>${genre}: ${genrePreferences[genre]} votes</p>`;
-            }
-        }
-
-        function displayTopGenres() {
-            const sortedGenres = Object.entries(genrePreferences).sort((a, b) => b[1] - a[1]).slice(0, 3);
             const topGenresContainer = document.getElementById('top-genres');
-            topGenresContainer.innerHTML = '<h2>Top 3 Genres Based on Your Ratings</h2>';
+            topGenresContainer.innerHTML = '<h2>Top 3 Genres:</h2>';
 
+            const sortedGenres = Object.entries(genreRatings).sort((a, b) => b[1] - a[1]).slice(0, 3);
             sortedGenres.forEach(([genre, count]) => {
-                topGenresContainer.innerHTML += `<p>${genre}: ${count} votes</p>`;
+                const genreDiv = document.createElement('div');
+                genreDiv.textContent = `${genre}: ${count}`;
+                topGenresContainer.appendChild(genreDiv);
             });
+
+            recommendAnime(sortedGenres.map(([genre]) => genre), ratedAnimeTitles);
         }
 
-        function displayRecommendations() {
-            const sortedGenres = Object.entries(genrePreferences).sort((a, b) => b[1] - a[1]).slice(0, 3);
+        function recommendAnime(topGenres, ratedAnimeTitles) {
             const recommendationsContainer = document.getElementById('recommendations');
-            recommendationsContainer.innerHTML = '<h2>Recommended Mecha Anime for You</h2>';
-            const recommendedAnime = [];
+            recommendationsContainer.innerHTML = '<h2>Recommended Shows:</h2>';
 
-            sortedGenres.forEach(([genre]) => {
-                const availableAnime = animeList.filter(anime => anime.genre === genre && !ratedAnimeTitles.has(anime.title));
-                if (availableAnime.length > 0) {
-                    recommendedAnime.push(availableAnime[0]);
-                }
-            });
+            const recommendations = animeJson.filter(anime => 
+                topGenres.includes(anime.sub_genre) && !ratedAnimeTitles.includes(anime.title)
+            ).slice(0, 3);
 
-            recommendedAnime.forEach(anime => {
-                recommendationsContainer.innerHTML += `<p>${anime.title} (${anime.year}) - Genre: ${anime.genre}</p>`;
+            recommendations.forEach(anime => {
+                const recommendationDiv = document.createElement('div');
+                recommendationDiv.textContent = `${anime.title} (${anime.year}) by ${anime.creator}`;
+                recommendationsContainer.appendChild(recommendationDiv);
             });
         }
-
-        function rateMoreAnime() {
-            displayAnimeList();
-        }
-
-        displayAnimeList();
     </script>
 </body>
 </html>
