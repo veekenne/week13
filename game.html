@@ -7,6 +7,7 @@
     <style>
         body {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -16,9 +17,12 @@
         canvas {
             border: 2px solid #fff;
         }
-        .choice-button {
-            font-size: 15px;
-            padding: 10px 20px;
+        .game-description {
+            color: white;
+            margin-top: 20px;
+            font-size: 16px;
+            text-align: center;
+            max-width: 600px;
         }
     </style>
 </head>
@@ -206,7 +210,12 @@
             text(`Mouse - X: ${Math.floor(x)}, Y: ${Math.floor(y)}`, 10, height - 20);
         }
     </script>
-<br><br>
-    Where does this text appear?
+
+    <!-- Text description beneath the game window -->
+    <div class="game-description">
+        Welcome to Cozy Clicky Kitties! Interact with the cats by clicking on them to feed, pet, or play. 
+        Your goal is to complete all interactions with the kitties to finish the game. Have fun!
+    </div>
+
 </body>
 </html>
