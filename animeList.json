@@ -1,227 +1,344 @@
 [
-  {
-    "title": "Mobile Suit Gundam",
-    "creator": "Yoshiyuki Tomino",
-    "year": 1979,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Neon Genesis Evangelion",
-    "creator": "Hideaki Anno",
-    "year": 1995,
-    "genre": "Apocalyptic and post-apocalyptic fiction"
-  },
-  {
-    "title": "Code Geass: Lelouch of the Rebellion",
-    "creator": "Gorō Taniguchi",
-    "year": 2006,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Tengen Toppa Gurren Lagann",
-    "creator": "Hiroyuki Imaishi",
-    "year": 2007,
-    "genre": "Apocalyptic and post-apocalyptic fiction"
-  },
-  {
-    "title": "Macross",
-    "creator": "Shōji Kawamori",
-    "year": 1982,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Full Metal Panic!",
-    "creator": "Shouji Gatou",
-    "year": 2002,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Armored Trooper Votoms",
-    "creator": "Ryosuke Takahashi",
-    "year": 1983,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Eureka Seven",
-    "creator": "Tomoki Kyoda",
-    "year": 2005,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Martian Successor Nadesico",
-    "creator": "Tatsuo Sato",
-    "year": 1996,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Aldnoah.Zero",
-    "creator": "Gen Urobuchi",
-    "year": 2014,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Mazinger Z",
-    "creator": "Go Nagai",
-    "year": 1972,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Patlabor: The Mobile Police",
-    "creator": "Mamoru Oshii",
-    "year": 1989,
-    "genre": "Cyberpunk"
-  },
-  {
-    "title": "Blue Gender",
-    "creator": "Ryosuke Takahashi",
-    "year": 1999,
-    "genre": "Apocalyptic and post-apocalyptic fiction"
-  },
-  {
-    "title": "Zegapain",
-    "creator": "Masami Shimoda",
-    "year": 2006,
-    "genre": "Apocalyptic and post-apocalyptic fiction"
-  },
-  {
-    "title": "The Big O",
-    "creator": "Kazuyoshi Katayama",
-    "year": 1999,
-    "genre": "Cyberpunk"
-  },
-  {
-    "title": "Valvrave the Liberator",
-    "creator": "Kō Matsuo",
-    "year": 2013,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Knights of Sidonia",
-    "creator": "Tsutomu Nihei",
-    "year": 2014,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Fafner in the Azure",
-    "creator": "Nobuyoshi Habara",
-    "year": 2004,
-    "genre": "Apocalyptic and post-apocalyptic fiction"
-  },
-  {
-    "title": "Gunbuster",
-    "creator": "Hideaki Anno",
-    "year": 1988,
-    "genre": "Space opera"
-  },
-  {
-    "title": "RahXephon",
-    "creator": "Yutaka Izubuchi",
-    "year": 2002,
-    "genre": "Apocalyptic and post-apocalyptic fiction"
-  },
-  {
-    "title": "Heavy Metal L-Gaim",
-    "creator": "Yoshiyuki Tomino",
-    "year": 1984,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Gundam Wing",
-    "creator": "Masashi Ikeda",
-    "year": 1995,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Getter Robo",
-    "creator": "Go Nagai",
-    "year": 1974,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Dai-Guard",
-    "creator": "Seiji Mizushima",
-    "year": 1999,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Cross Ange: Rondo of Angel and Dragon",
-    "creator": "Yoshiharu Ashino",
-    "year": 2014,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Gaiking",
-    "creator": "Akira Kamiya",
-    "year": 1976,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Magic Knight Rayearth",
-    "creator": "Toshihiro Hirano",
-    "year": 1994,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Space Runaway Ideon",
-    "creator": "Yoshiyuki Tomino",
-    "year": 1980,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Genesis Climber MOSPEADA",
-    "creator": "Katsuhisa Yamada",
-    "year": 1983,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Voltes V",
-    "creator": "Tadao Nagahama",
-    "year": 1977,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Aquarion",
-    "creator": "Shoji Kawamori",
-    "year": 2005,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Break Blade (Broken Blade)",
-    "creator": "Tetsurō Amino",
-    "year": 2010,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Gravion",
-    "creator": "Masami Ōbari",
-    "year": 2002,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Star Driver",
-    "creator": "Takuya Igarashi",
-    "year": 2010,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Linebarrels of Iron",
-    "creator": "Masamitsu Hidaka",
-    "year": 2008,
-    "genre": "Space opera"
-  },
-  {
-    "title": "Muv-Luv Alternative: Total Eclipse",
-    "creator": "Takayuki Inagaki",
-    "year": 2012,
-    "genre": "Military science fiction"
-  },
-  {
-    "title": "Planet With",
-    "creator": "Satoshi Mizukami",
-    "year": 2018,
-    "genre": "Space opera"
-  },
-  {
+    {
+        "title": "Mobile Suit Gundam",
+        "sub_genre": "Real Robot",
+        "creator": "Yoshiyuki Tomino",
+        "year": 1979
+    },
+    {
+        "title": "Neon Genesis Evangelion",
+        "sub_genre": "Psychological Mecha",
+        "creator": "Hideaki Anno",
+        "year": 1995
+    },
+    {
+        "title": "The Super Dimension Fortress Macross",
+        "sub_genre": "Real Robot",
+        "creator": "Shoji Kawamori",
+        "year": 1982
+    },
+    {
+        "title": "Mobile Suit Zeta Gundam",
+        "sub_genre": "Real Robot",
+        "creator": "Yoshiyuki Tomino",
+        "year": 1985
+    },
+    {
+        "title": "Code Geass: Lelouch of the Rebellion",
+        "sub_genre": "Military Mecha",
+        "creator": "Gor\u014d Taniguchi",
+        "year": 2006
+    },
+    {
+        "title": "Full Metal Panic!",
+        "sub_genre": "Military Mecha",
+        "creator": "Shoji Gatoh",
+        "year": 2002
+    },
+    {
+        "title": "Gurren Lagann",
+        "sub_genre": "Super Robot",
+        "creator": "Hiroyuki Imaishi",
+        "year": 2007
+    },
+    {
+        "title": "Patlabor: The Mobile Police",
+        "sub_genre": "Real Robot",
+        "creator": "Mamoru Oshii",
+        "year": 1989
+    },
+    {
+        "title": "Martian Successor Nadesico",
+        "sub_genre": "Space Opera Mecha",
+        "creator": "Tatsuo Sato",
+        "year": 1996
+    },
+    {
+        "title": "Eureka Seven",
+        "sub_genre": "Adventure Mecha",
+        "creator": "Tomoki Kyoda",
+        "year": 2005
+    },
+    {
+        "title": "Gunbuster",
+        "sub_genre": "Super Robot",
+        "creator": "Hideaki Anno",
+        "year": 1988
+    },
+    {
+        "title": "Mobile Fighter G Gundam",
+        "sub_genre": "Super Robot",
+        "creator": "Yasuhiro Imagawa",
+        "year": 1994
+    },
+    {
+        "title": "Mazinger Z",
+        "sub_genre": "Super Robot",
+        "creator": "Go Nagai",
+        "year": 1972
+    },
+    {
+        "title": "The Vision of Escaflowne",
+        "sub_genre": "Fantasy Mecha",
+        "creator": "Kazuki Akane",
+        "year": 1996
+    },
+    {
+        "title": "Getter Robo",
+        "sub_genre": "Super Robot",
+        "creator": "Go Nagai & Ken Ishikawa",
+        "year": 1974
+    },
+    {
+        "title": "Big O",
+        "sub_genre": "Noir Mecha",
+        "creator": "Kazuyoshi Katayama",
+        "year": 1999
+    },
+    {
+        "title": "Armored Trooper Votoms",
+        "sub_genre": "Real Robot",
+        "creator": "Ryosuke Takahashi",
+        "year": 1983
+    },
+    {
+        "title": "Aldnoah.Zero",
+        "sub_genre": "Military Mecha",
+        "creator": "Ei Aoki",
+        "year": 2014
+    },
+    {
+        "title": "Gundam Wing",
+        "sub_genre": "Military Mecha",
+        "creator": "Masashi Ikeda",
+        "year": 1995
+    },
+    {
+        "title": "Valvrave the Liberator",
+        "sub_genre": "Space Opera Mecha",
+        "creator": "K\u014d Matsuo",
+        "year": 2013
+    },
+    {
+        "title": "Knight\u2019s & Magic",
+        "sub_genre": "Fantasy Mecha",
+        "creator": "Yusuke Yamamoto",
+        "year": 2017
+    },
+    {
+        "title": "Gaogaigar: King of Braves",
+        "sub_genre": "Super Robot",
+        "creator": "Yoshitomo Yonetani",
+        "year": 1997
+    },
+    {
+        "title": "RahXephon",
+        "sub_genre": "Psychological Mecha",
+        "creator": "Yutaka Izubuchi",
+        "year": 2002
+    },
+    {
+        "title": "Macross Frontier",
+        "sub_genre": "Space Opera Mecha",
+        "creator": "Shoji Kawamori",
+        "year": 2008
+    },
+    {
+        "title": "Mobile Suit Gundam SEED",
+        "sub_genre": "Real Robot",
+        "creator": "Mitsuo Fukuda",
+        "year": 2002
+    },
+    {
+        "title": "Mobile Suit Gundam 00",
+        "sub_genre": "Real Robot",
+        "creator": "Seiji Mizushima",
+        "year": 2007
+    },
+    {
+        "title": "Mobile Suit Victory Gundam",
+        "sub_genre": "Real Robot",
+        "creator": "Yoshiyuki Tomino",
+        "year": 1993
+    },
+    {
+        "title": "Genesis Climber Mospeada",
+        "sub_genre": "Adventure Mecha",
+        "creator": "Katsuhisa Yamada",
+        "year": 1983
+    },
+    {
+        "title": "Dai-Guard",
+        "sub_genre": "Office Comedy Mecha",
+        "creator": "Seiji Mizushima",
+        "year": 1999
+    },
+    {
+        "title": "Zoids: Chaotic Century",
+        "sub_genre": "Adventure Mecha",
+        "creator": "Takao Kato",
+        "year": 1999
+    },
+    {
+        "title": "Blue Comet SPT Layzner",
+        "sub_genre": "Real Robot",
+        "creator": "Ryosuke Takahashi",
+        "year": 1985
+    },
+    {
+        "title": "Cross Ange: Rondo of Angels and Dragons",
+        "sub_genre": "Fantasy Mecha",
+        "creator": "Yoshiharu Ashino",
+        "year": 2014
+    },
+    {
+        "title": "Space Runaway Ideon",
+        "sub_genre": "Super Robot",
+        "creator": "Yoshiyuki Tomino",
+        "year": 1980
+    },
+    {
+        "title": "Star Driver",
+        "sub_genre": "Supernatural Mecha",
+        "creator": "Takuya Igarashi",
+        "year": 2010
+    },
+    {
+        "title": "Heavy Metal L-Gaim",
+        "sub_genre": "Real Robot",
+        "creator": "Yoshiyuki Tomino",
+        "year": 1984
+    },
+    {
+        "title": "Godannar",
+        "sub_genre": "Super Robot",
+        "creator": "Yasushi Nagaoka",
+        "year": 2003
+    },
+    {
+        "title": "Gravion",
+        "sub_genre": "Super Robot",
+        "creator": "Masami \u014cbari",
+        "year": 2002
+    },
+    {
+        "title": "Linebarrels of Iron",
+        "sub_genre": "Supernatural Mecha",
+        "creator": "Masamitsu Hidaka",
+        "year": 2008
+    },
+    {
+        "title": "Break Blade (Broken Blade)",
+        "sub_genre": "Fantasy Mecha",
+        "creator": "Tetsuro Amino",
+        "year": 2010
+    },
+    {
+        "title": "SSSS.Gridman",
+        "sub_genre": "Tokusatsu Mecha",
+        "creator": "Akira Amemiya",
+        "year": 2018
+    },
+    {
+        "title": "Macross Plus",
+        "sub_genre": "Real Robot",
+        "creator": "Shoji Kawamori",
+        "year": 1994
+    },
+    {
+        "title": "Mobile Police Patlabor 2",
+        "sub_genre": "Real Robot",
+        "creator": "Mamoru Oshii",
+        "year": 1993
+    },
+    {
+        "title": "Knight Gundam",
+        "sub_genre": "Fantasy Mecha",
+        "creator": "Yoshiyuki Tomino",
+        "year": 1990
+    },
+    {
+        "title": "Turn A Gundam",
+        "sub_genre": "Real Robot",
+        "creator": "Yoshiyuki Tomino",
+        "year": 1999
+    },
+    {
+        "title": "Zegapain",
+        "sub_genre": "Virtual Reality Mecha",
+        "creator": "Masami Shimoda",
+        "year": 2006
+    },
+    {
+        "title": "Aquarion",
+        "sub_genre": "Super Robot",
+        "creator": "Shoji Kawamori",
+        "year": 2005
+    },
+    {
+        "title": "After War Gundam X",
+        "sub_genre": "Post-Apocalyptic Mecha",
+        "creator": "Sunrise",
+        "year": 1996
+    },
+    {
+        "title": "Overman King Gainer",
+        "sub_genre": "Real Robot",
+        "creator": "Yoshiyuki Tomino",
+        "year": 2002
+    },
+    {
+        "title": "Captain Earth",
+        "sub_genre": "Supernatural Mecha",
+        "creator": "Takuya Igarashi",
+        "year": 2014
+    },
+    {
+        "title": "Gasaraki",
+        "sub_genre": "Military Mecha",
+        "creator": "Ryosuke Takahashi",
+        "year": 1998
+    },
+    {
+        "title": "Macross 7",
+        "sub_genre": "Space Opera Mecha",
+        "creator": "Tetsuro Amino",
+        "year": 1994
+    },
+    {
+        "title": "Magic Knight Rayearth",
+        "sub_genre": "Fantasy Mecha",
+        "creator": "Toshihiro Hirano",
+        "year": 1994
+    },
+    {
+        "title": "Robotech",
+        "sub_genre": "Compilation Mecha",
+        "creator": "Carl Macek",
+        "year": 1985
+    },
+    {
+        "title": "Dancouga - Super Beast Machine God",
+        "sub_genre": "Super Robot",
+        "creator": "Masami \u014cbari",
+        "year": 1985
+    },
+    {
+        "title": "Armored Fleet Dairugger XV",
+        "sub_genre": "Real Robot",
+        "creator": "Saburo Yatsude",
+        "year": 1982
+    },
+    {
+        "title": "Aquarion Evol",
+        "sub_genre": "Super Robot",
+        "creator": "Shoji Kawamori",
+        "year": 2012
+    },
+    {
+        "title": "Fafner in the Azure",
+        "sub_genre": "Psychological Mecha",
+        "creator": "Nobuyoshi Habara",
+        "year": 2004
+    }
 ]
-    
-
